@@ -2,7 +2,7 @@
 
 /**
 * Clase que contiene la configuracion general para conexion a mysql
-* @author Camilo Garzon Calle
+* @author Camilo Garzon Correa
 * @version 1.0
 */	
 class Connect {
