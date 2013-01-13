@@ -309,10 +309,14 @@ class Util{
 		$query .= $table." SET ";
 		$fields = ""; 
 		foreach ($arrfieldscomma as $f => $v) {
-			$fields .= " ".$f." = '".$v."',";
+                    if (strlen($v) > 3){
+                        $fields .= " ".$f." = '".$v."',";
+                    }
 		}
 		foreach ($arrfieldsnocomma as $f2 => $v2) {
-			$fields .= " ".$f2." = ".$v2.",";
+                    if ($v2 > 0){
+                        $fields .= " ".$f2." = ".$v2.",";
+                    }
 		}
 		$fields = rtrim($fields, ",");
 		$query .= $fields." WHERE ".$where;
