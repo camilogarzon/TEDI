@@ -1,36 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>new_file</title>
-    <meta name="description" content="" />
-    <meta name="author" content="zxcv" />
-    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  </head>
-  <body>
-    <div>
-      <header>
-        <h1>new_file</h1>
-      </header>
-      <nav>
-        <p>
-          <a href="/">Home</a>
-        </p>
-        <p>
-          <a href="/contact">Contact</a>
-        </p>
-      </nav>
-
-      <div>
-
-      </div>
-
-      <footer>
-        <p>
-          &copy; Copyright  by zxcv
-        </p>
-      </footer>
-    </div>
-  </body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <title>TEDI</title>
+        <link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
+        <script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
+    </head>
+    <body>
+        <!-- LOGIN -->
+        <div data-role="page" id="page1">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    TEDI
+                </h3>
+            </div>
+            <div data-role="content" align="center">
+                <h3>
+                    ¿Quieres una dieta sin cambiar lo que comes?
+                </h3>
+                <div align="center" data-role="fieldcontain">
+                    <input name="email1" id="email1" placeholder="Email" value="" type="email" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <input name="pass" id="passwor" placeholder="contraseña" value="" type="password" />
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a id="ingresar" data-role="button" data-theme="a" href="#page6" data-transition="flow" data-icon="check" data-iconpos="left">
+                            Ingresar
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a id="registro" data-role="button" data-theme="b" href="#page2" data-transition="flow" data-icon="star" data-iconpos="left">
+                            Registro
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="page2">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    TEDI
+                </h3>
+                <h2>
+                    Registro - Paso 1
+                </h2>
+            </div>
+            <div align="center" data-role="content">
+                <div align="center" data-role="fieldcontain">
+                    <input name="nombrecompleto" id="nombrecompleto" placeholder="Nombre Completo" value="" type="text" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <input name="email2" id="email2" placeholder="Email" value="" type="email" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <input name="pass1" id="pass1" placeholder="Contraseña" value="" type="password" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <input name="pass2" id="pass2" placeholder="Repita Contraseña" value="" type="password" />
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a data-role="button" data-rel="back" href="#page1" data-transition="pop">
+                            Volver
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a data-role="button" href="#page3" data-transition="flow">
+                            Continuar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="page3">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    TEDI
+                </h3>
+                <h2>
+                    Registro - Paso 2
+                </h2>
+            </div>
+            <div align="center" data-role="content">
+                <div align="center" data-role="fieldcontain">
+                    <select id="sexo" name="sexo">
+                        <option value="seleccione">Soy...</option>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <select id="pais_residencia" name="pais_residencia">
+                        <option value="seleccione">Vivo en...</option>
+                        <option value="Colombia">Colombia</option>
+                    </select>
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <select id="quiero_dieta" name="quiero_dieta">
+                        <option value="seleccione">Quiero...</option>
+                        <option value="bajar_peso">Bajar de peso</option>
+                    </select>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a data-role="button" data-rel="back" href="#page2" data-transition="pop">
+                            Volver
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a data-role="button" href="#page4" data-transition="flow">
+                            Continuar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="page4">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    TEDI
+                </h3>
+                <h2>
+                    Registro - Paso 3
+                </h2>
+            </div>
+            <div align="center" data-role="content">
+                <div align="center" data-role="fieldcontain">
+                    <input name="edad" id="edad" placeholder="Edad (en años)" value="" type="number" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <input name="estatura" id="estatura" placeholder="Estatura (en centimetros)" type="number" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <input name="peso" id="peso" placeholder="Peso (en kilogramos)" type="number" />
+                </div>
+                <div align="center" data-role="fieldcontain">
+                    <select id="nivel_actividad" name="nivel_actividad">
+                        <option value="seleccione">Nivel de actividad...</option>
+                        <option value="Sedentario">Sedentario</option>
+                        <option value="Deportista">Deportista</option>
+                    </select>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a data-role="button" data-rel="back" href="#page3" data-transition="pop">
+                            Volver
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a data-role="button" href="#page5" data-transition="flow">
+                            Continuar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-role="page" id="page5">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    TEDI
+                </h3>
+                <h2>
+                    Registro terminado
+                </h2>
+            </div>
+            <div data-role="content">
+                <h4>
+                    Lo primero que podemos decirte esta relacionado con tu peso ideal y las calorías que debes consumir.
+                </h4>
+                <h4>
+                    Tu peso ideal es 50 Kgs.
+                </h4>
+                <h4>
+                    Calorías diarias recomendadas 985.
+                </h4>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="cambiar_peso">
+                            Cambiar el peso que quiero:
+                        </label>
+                        <input id="cambiar_peso" type="range" name="slider" value="50" min="0" max="100" data-highlight="false" />
+                    </fieldset>
+                </div>
+                <a data-role="button" data-theme="e" href="#page1">
+                    Plan de dieta
+                </a>
+            </div>
+        </div>
+        <div data-role="page" id="page6">
+            <div data-role="header">
+                <a href="index.html" data-icon="info">.</a>
+                <h1>TEDI</h1>
+                <a href="index.html" data-icon="gear" class="ui-btn-right">.</a>
+            </div>
+            <div data-role="content">
+                <a data-role="button" href="#page1">
+                    Hora de comer!
+                </a>
+                <a data-role="button" href="#page1">
+                    Mi dieta
+                </a>
+                <a data-role="button" href="#page1">
+                    Mi evolución
+                </a>
+                <a data-role="button" href="#page1">
+                    Mi peso
+                </a>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a data-role="button" href="#page1">
+                            Ayuda
+                        </a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a data-role="button" href="#page1">
+                            Salir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        </script>
+    </body>
 </html>
