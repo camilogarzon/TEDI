@@ -8,11 +8,21 @@
         <script type="text/javascript" charset="utf-8" src="js/cordova-2.1.0.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.2.0.min.js"></script>
+        <style type="text/css">
+            .right10px{
+                position: absolute;
+                right: 10px;
+            }
+            .right30px{
+                position: absolute;
+                right: 60px;
+            }
+        </style>
     </head>
     <body>
         <!-- LOGIN -->
         <div data-role="page" id="page1">
-            <div data-theme="a" data-role="header">
+            <div data-theme="a" data-role="header" data-position="fixed">
                 <h3>
                     TEDI
                 </h3>
@@ -29,12 +39,12 @@
                 </div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <a id="ingresar" data-role="button" data-theme="a" href="#page6" data-transition="flow" data-icon="check" data-iconpos="left">
+                        <a id="ingresar" data-role="button" data-theme="a" href="#page6" data-transition="none" data-icon="check" data-iconpos="left">
                             Ingresar
                         </a>
                     </div>
                     <div class="ui-block-b">
-                        <a id="registro" data-role="button" data-theme="b" href="#page2" data-transition="flow" data-icon="star" data-iconpos="left">
+                        <a id="registro" data-role="button" data-theme="b" href="#page2" data-transition="none" data-icon="star" data-iconpos="left">
                             Registro
                         </a>
                     </div>
@@ -42,7 +52,7 @@
             </div>
         </div>
         <div data-role="page" id="page2">
-            <div data-theme="a" data-role="header">
+            <div data-theme="a" data-role="header" data-position="fixed">
                 <h3>
                     TEDI
                 </h3>
@@ -65,12 +75,12 @@
                 </div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <a data-role="button" data-rel="back" href="#page1" data-transition="pop">
+                        <a data-role="button" data-rel="back" href="#page1" data-transition="none">
                             Volver
                         </a>
                     </div>
                     <div class="ui-block-b">
-                        <a data-role="button" href="#page3" data-transition="flow">
+                        <a data-role="button" href="#page3" data-transition="none">
                             Continuar
                         </a>
                     </div>
@@ -78,7 +88,7 @@
             </div>
         </div>
         <div data-role="page" id="page3">
-            <div data-theme="a" data-role="header">
+            <div data-theme="a" data-role="header" data-position="fixed">
                 <h3>
                     TEDI
                 </h3>
@@ -108,12 +118,12 @@
                 </div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <a data-role="button" data-rel="back" href="#page2" data-transition="pop">
+                        <a data-role="button" data-rel="back" href="#page2" data-transition="none">
                             Volver
                         </a>
                     </div>
                     <div class="ui-block-b">
-                        <a data-role="button" href="#page4" data-transition="flow">
+                        <a data-role="button" href="#page4" data-transition="none">
                             Continuar
                         </a>
                     </div>
@@ -121,7 +131,7 @@
             </div>
         </div>
         <div data-role="page" id="page4">
-            <div data-theme="a" data-role="header">
+            <div data-theme="a" data-role="header" data-position="fixed">
                 <h3>
                     TEDI
                 </h3>
@@ -148,12 +158,12 @@
                 </div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <a data-role="button" data-rel="back" href="#page3" data-transition="pop">
+                        <a data-role="button" data-rel="back" href="#page3" data-transition="none">
                             Volver
                         </a>
                     </div>
                     <div class="ui-block-b">
-                        <a data-role="button" href="#page5" data-transition="flow">
+                        <a data-role="button" href="#page5" data-transition="none">
                             Continuar
                         </a>
                     </div>
@@ -161,7 +171,7 @@
             </div>
         </div>
         <div data-role="page" id="page5">
-            <div data-theme="a" data-role="header">
+            <div data-theme="a" data-role="header" data-position="fixed">
                 <h3>
                     TEDI
                 </h3>
@@ -187,45 +197,142 @@
                         <input id="cambiar_peso" type="range" name="slider" value="50" min="0" max="100" data-highlight="false" />
                     </fieldset>
                 </div>
-                <a data-role="button" data-theme="e" href="#page1">
+                <a data-role="button" data-theme="e" href="#page1" data-transition="none">
                     Plan de dieta
                 </a>
             </div>
         </div>
         <div data-role="page" id="page6">
-            <div data-role="header">
-                <a href="#page6" data-icon="home" style="color: black !important;">.</a>
+            <div data-role="header" data-position="fixed">
+                <a href="#page6" data-transition="none" data-role="button" data-icon="home" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Home" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
                 <h1>TEDI</h1>
-                <a href="#page6" data-icon="gear" class="ui-btn-right" style="color: black !important;">.</a>
+                <a href="#page6" data-transition="none" data-role="button" data-icon="gear" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Option" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Option</span><span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span></span></a>
             </div>
             <div data-role="content">
-                <a data-role="button" href="#page1">
+                <a data-role="button" href="#page8" data-transition="none">
                     Hora de comer!
                 </a>
-                <a data-role="button" href="#page1">
+                <a data-role="button" href="#page7" data-transition="none">
                     Mi dieta
                 </a>
-                <a data-role="button" href="#page1">
+                <a data-role="button" href="#page1" data-transition="none">
                     Mi evolución
                 </a>
-                <a data-role="button" href="#page1">
+                <a data-role="button" href="#page1" data-transition="none">
                     Mi peso
                 </a>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
-                        <a data-role="button" href="#page6">
+                        <a data-role="button" href="#page6" data-transition="none">
                             Ayuda
                         </a>
                     </div>
                     <div class="ui-block-b">
-                        <a data-role="button" href="#page6">
+                        <a data-role="button" href="#page6" data-transition="none">
                             Salir
                         </a>
                     </div>
                 </div>
             </div>
         </div>
+
         <div data-role="page" id="page7">
+            <div data-role="header" data-position="fixed">
+                <a href="#page6" data-transition="none" data-role="button" data-icon="home" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Home" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+                <h1>TEDI</h1>
+                <a href="#page7" data-transition="none" data-role="button" data-icon="info" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Info" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Info</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+                <h2>Mi Dieta</h2>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" class="ui-listview">
+                    <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">
+                        <a href="index.html" data-transition="none" data-role="button" data-icon="refresh" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="refresh" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Refrescar</span><span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;</span></span></a>
+                        Desayuno: 500 cal
+                        <a href="index.html" data-transition="none" data-role="button" data-icon="minus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="delete" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right30px"><span class="ui-btn-inner"><span class="ui-btn-text">Quitar</span><span class="ui-icon ui-icon-minus ui-icon-shadow">&nbsp;</span></span></a>
+                        <a href="index.html" data-transition="none" data-role="button" data-icon="plus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="agregar" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right10px"><span class="ui-btn-inner"><span class="ui-btn-text">Agregar</span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></a>
+                    </li>
+                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c">
+                        <fieldset data-role="controlgroup" class="ui-corner-all ">
+                            <div class="ui-controlgroup ui-controlgroup-controls">
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom"><label for="checkbox-1a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">1 Arepa</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom"><label for="checkbox-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Tajada de queso</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom"><label for="checkbox-3a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Galleta integral</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom"><label for="checkbox-4a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-bottom ui-controlgroup-last ui-btn-up-c"><span class="ui-btn-inner ui-corner-bottom ui-controlgroup-last"><span class="ui-btn-text">1 Taza de chocolate</span></span></label></div>
+                            </div>
+                        </fieldset>
+                    </li>              
+                    <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">
+                        <a href="index.html" data-role="button" data-icon="refresh" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="refresh" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Refrescar</span><span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;</span></span></a>
+                        Almuerzo: 600 cal
+                        <a href="index.html" data-role="button" data-icon="minus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="delete" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right30px"><span class="ui-btn-inner"><span class="ui-btn-text">Quitar</span><span class="ui-icon ui-icon-minus ui-icon-shadow">&nbsp;</span></span></a>
+                        <a href="index.html" data-role="button" data-icon="plus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="agregar" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right10px"><span class="ui-btn-inner"><span class="ui-btn-text">Agregar</span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></a>
+                    </li>
+                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c">
+                        <fieldset data-role="controlgroup" class="ui-corner-all ">
+                            <div class="ui-controlgroup ui-controlgroup-controls">
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom"><label for="checkbox-1a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">1 Arepa</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom"><label for="checkbox-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Tajada de queso</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom"><label for="checkbox-3a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Galleta integral</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom"><label for="checkbox-4a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-bottom ui-controlgroup-last ui-btn-up-c"><span class="ui-btn-inner ui-corner-bottom ui-controlgroup-last"><span class="ui-btn-text">1 Taza de chocolate</span></span></label></div>
+                            </div>
+                        </fieldset>
+                    </li>              
+                    <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">
+                        <a href="index.html" data-role="button" data-icon="refresh" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="refresh" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Refrescar</span><span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;</span></span></a>
+                        Cena: 200 cal
+                        <a href="index.html" data-role="button" data-icon="minus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="delete" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right30px"><span class="ui-btn-inner"><span class="ui-btn-text">Quitar</span><span class="ui-icon ui-icon-minus ui-icon-shadow">&nbsp;</span></span></a>
+                        <a href="index.html" data-role="button" data-icon="plus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="agregar" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right10px"><span class="ui-btn-inner"><span class="ui-btn-text">Agregar</span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></a>
+                    </li>
+                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c">
+                        <fieldset data-role="controlgroup" class="ui-corner-all ">
+                            <div class="ui-controlgroup ui-controlgroup-controls">
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom"><label for="checkbox-1a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">1 Arepa</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom"><label for="checkbox-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Tajada de queso</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom"><label for="checkbox-3a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Galleta integral</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom"><label for="checkbox-4a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-bottom ui-controlgroup-last ui-btn-up-c"><span class="ui-btn-inner ui-corner-bottom ui-controlgroup-last"><span class="ui-btn-text">1 Taza de chocolate</span></span></label></div>
+                            </div>
+                        </fieldset>
+                    </li>              
+                </ul>
+            </div>
+        </div>
+        <div data-role="page" id="page8">
+            <div data-role="header" data-position="fixed">
+                <a href="#page6" data-transition="none" data-role="button" data-icon="home" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Home" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+                <h1>TEDI</h1>
+                <a href="#page7" data-transition="none" data-role="button" data-icon="info" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Info" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Info</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+                <h2>Hora de Comer!</h2>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" class="ui-listview">
+                    <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">
+                        <a href="index.html" data-transition="none" data-role="button" data-icon="refresh" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="refresh" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Refrescar</span><span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;</span></span></a>
+                        Desayuno: 500 cal
+                        <a href="index.html" data-transition="none" data-role="button" data-icon="minus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="delete" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right30px"><span class="ui-btn-inner"><span class="ui-btn-text">Quitar</span><span class="ui-icon ui-icon-minus ui-icon-shadow">&nbsp;</span></span></a>
+                        <a href="index.html" data-transition="none" data-role="button" data-icon="plus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="agregar" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right10px"><span class="ui-btn-inner"><span class="ui-btn-text">Agregar</span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></a>
+                    </li>
+                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c">
+                        <fieldset data-role="controlgroup" class="ui-corner-all ">
+                            <div class="ui-controlgroup ui-controlgroup-controls">
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom"><label for="checkbox-1a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">1 Arepa</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom"><label for="checkbox-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Tajada de queso</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom"><label for="checkbox-3a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Galleta integral</span></span></label></div>
+                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom"><label for="checkbox-4a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-bottom ui-controlgroup-last ui-btn-up-c"><span class="ui-btn-inner ui-corner-bottom ui-controlgroup-last"><span class="ui-btn-text">1 Taza de chocolate</span></span></label></div>
+                            </div>
+                        </fieldset>
+                    </li>              
+                </ul>
+                <br/>
+                <div class="ui-grid-a" align="center">
+                    <div class="ui-block-a" align="center">
+                        <a href="#page6" data-role="button" data-icon="check" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">Sí</span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
+                    </div>
+                    <div class="ui-block-b" align="center">
+                        <a href="#page6" data-role="button" data-icon="delete" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">No</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <script type="text/javascript">
         </script>
