@@ -1,0 +1,243 @@
+1;BEBIDAS;Merengada (helado);1 vaso;ÿ250;375;cc
+2;BEBIDAS;Chicha de arroz;1 vaso;ÿ250;245;cc
+3;BEBIDAS;Lactovisoy (bebida l ctea enriquecida a base de arroz;1 vaso;ÿ250;191;cc
+4;BEBIDAS;Malta;1 vaso o bot.;ÿ250;150;cc
+5;BEBIDAS;Gaseosa regular;1 lata;ÿ355;170;cc
+6;BEBIDAS;Gaseosa regular;1 vaso;ÿ250;120;cc
+7;BEBIDAS;Jugo de manzana;1 vaso;ÿ250;120;cc
+8;BEBIDAS;Papel¢n con lim¢n;1 vaso;ÿ250;95;cc
+9;BEBIDAS;Malta ligera;1 vaso o bot.;ÿ250;75;cc
+10;BEBIDAS;Bebida deportiva;1 vaso;ÿ250;60;cc
+11;BEBIDAS;Jugo de tomate;1 vaso;ÿ250;43;cc
+12;BEBIDAS;Gaseosa ligera;1 vaso;ÿ250;1;cc
+13;BEBIDAS;T‚ (infusi¢n sin az£car);1 taza;ÿ250;2;cc
+14;BEBIDAS;Caf‚ (sin az£car);1 taza;ÿ250;1;cc
+15;BEBIDAS;Avena en atol;1 taza;ÿ250;244;cc
+16;BEBIDAS;Jugo de fruta envasado ;1 vaso;250;135;cc
+17;BEBIDAS;Naranjada;1 vaso;ÿ250;130;cc
+18;BEBIDAS;Jugo de naranja natural;1 vaso;ÿ250;120;cc
+19;BEBIDAS;Naranjada ligera;1 botellaÿ350;ÿ350;80;cc
+20;BEBIDAS;Jugo de pera;1 vaso;ÿ225;80;cc
+21;BEBIDAS;Jugo de fruta ligero;1 vaso;ÿ250;40;cc
+22;BEBIDAS;Crema de leche para batir; 1/2 taza;ÿ100;350;gÿ
+23;BEBIDAS;Bebida l ctea con prebi¢ticos;1 botella mediana;ÿ300;ÿ300;cc 
+24;BEBIDAS;Crema de leche regular;1/2 taza;ÿ100;250;gÿ
+25;BEBIDAS;Yogurt firme con fruta;1 raci¢n mediana;ÿ180;230;cc 
+26;BEBIDAS;Bebida l ctea achocolatada;3/4 taza;ÿ200;170;cc
+27;BEBIDAS;Yogurt dulce con hojuelas de ma¡z;1 taza;ÿ165;170ÿ;cc
+28;BEBIDAS;Yogurt firme;1 raci¢n mediana;ÿ125;160;cc
+29;BEBIDAS;Crema de leche ligera;1/2 taza;ÿ100;160;gÿ
+30;BEBIDAS;Leche completa;1 taza;ÿ250;150;cc
+31;BEBIDAS;Yogurt firme natural;1 mediano;150;120;cc
+32;BEBIDAS;Yogurt dulce ligero con hojuelas;1 mediano;ÿ170;130;cc
+33;BEBIDAS;Bebida l ctea ligera con prebi¢ticos;1 botella mediana;300;120;cc
+34;BEBIDAS;Leche semi-descremada;1 taza;ÿ250;120;cc 
+35;BEBIDAS;Yogurt l¡quido dulce;1 botella peque¤a;ÿ150;119;cc
+36;BEBIDAS;Yogurt natural l¡quido;1 raci¢n mediana;ÿ180;92;cc 
+37;BEBIDAS;Leche descremada;1 taza;ÿ250;80;cc
+38;BEBIDAS;Yogurt firme ligero;1 mediano;ÿ125;70;cc
+39;BEBIDAS;Crema espesa;1 cucharada;ÿ20;70;g
+40;BEBIDAS;Nata;1 cucharada;ÿ20ÿ;66;g
+41;BEBIDAS;Leche condensada;1 cucharada;ÿ20;64;g
+42;AZéCAR, MIEL Y AFINES;Papel¢n rallado;1 cucharada;15;ÿ55;g
+43;AZéCAR, MIEL Y AFINES;Miel de abeja;1 cucharada;15;48;g
+44;AZéCAR, MIEL Y AFINES;Az£car blanca;1 cucharadita/bolsita;4;16;g
+45;AZéCAR, MIEL Y AFINES;Az£car morena;1 cucharadita;4;15;g
+46;AZéCAR, MIEL Y AFINES;Edulcorante;1ÿcucharadita;1;4;g
+47;DESAYUNO;Granola;media taza;150;ÿ200;g
+48;DESAYUNO;Avena en hojuelas con miel y leche descremada;1 taza total;ÿ30;200;g
+49;DESAYUNO;Arepa ( Harina integral 50 g);una mediana;100;178;g
+50;DESAYUNO;Arepa ( Harina precocida 50 g);una mediana;100;175;g
+51;DESAYUNO;Hallaquita;una mediana;100;175;g
+52;DESAYUNO;Hojuelas de cereal con media taza de leche descremada;1 taza total;30;200;g
+53;DESAYUNO;Hojuelas de ma¡z integrales ligeras con media taza de leche descremada;1 taza total;30;140;g
+54;DESAYUNO;Pan blanco;2 rebanadas;ÿ50;134;g
+55;DESAYUNO;Cachapa;una mediana;100;137;g
+56;DESAYUNO;Pan integral;2 rebanadas;60;162;g
+57;DESAYUNO;Pan redondo de hamburguesa;una unidad;50;120;g
+58;DESAYUNO;Casabe en galleta;5 unidades;25;90;g
+59;DESAYUNO;Pan integral ligero;2 rebanadas;56;80;g
+60;DESAYUNO;Galletas de soda integral;1 paquete de 3;ÿ30;129;g
+61;DESAYUNO;Galleta de soda (tipo club social) regular ¢ integral;1 paquete;ÿ26;110;g
+62;DESAYUNO;Galleta de soda;1 paquete;ÿ25;100;g
+63;FRUTAS;Cambur;1 mediano;ÿ100;96;g
+64;FRUTAS;Compota infantil de fruta;1 frascoÿÿ;ÿ113;80;g
+65;FRUTAS;Ensalada de fruta enlatada;1 taza;120;84;g
+66;FRUTAS;N¡spero;1 mediano;ÿ120;71;g
+67;FRUTAS;Uvas;15 unidades;ÿ100;70;g
+68;FRUTAS;Mango;3/4 taza;150;69;g
+69;FRUTAS;Pera;1 unidad;ÿ100;63ÿ;g
+70;FRUTAS;Lechoza;3/4 taza;ÿ150;53ÿ;g
+71;FRUTAS;Manzana;1 mediana;ÿ120;71;g
+72;FRUTAS;Pi¤a;1 rueda;ÿ100 ;52;g
+73;FRUTAS;Mel¢n;1 taza;ÿ200;40;g
+74;FRUTAS;Fresas;8 unidades;ÿ100;37;g
+75;FRUTAS;Naranja;1 mediana;ÿ120;40;g
+76;FRUTAS;Mandarina;1 mediana;ÿ120;33;g
+77;FRUTAS;Patilla;1 taza;ÿ200;23;g
+78;FRUTAS;Guayaba;1 mediana;ÿ 50;20;g
+79;CARNES;Chicharr¢n;1 porci¢n;50;323;g
+80;CARNES;Chuleta de Cerdo;1 unidadÿ;100;305;g
+81;CARNES;Costillas de Cerdo;1 porci¢n;100;295;g
+82;CARNES;Morcilla;1 unidad;100;250;g
+83;CARNES;Chuleta ahumada de Cerdo;1 chuleta mediana;120;241;g
+84;CARNES;Lomo de cerdo;1 porci¢n;100;202;g
+85;CARNES;Tocineta frita;3 tiritas;36;195;g
+86;CARNES;Pernil de cerdo sin grasa visibleÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ;1 porci¢n;120;145;g
+87;CARNES;Pavo, pechuga;1 porci¢n;120;150;g
+88;CARNES;Pollo, muslo sin piel;2 muslos;120;138;g
+89;CARNES;Pollo, pierna sin piel;2 piernas;120;136;g
+90;CARNES;Pollo, pechuga sin piel;media pechuga;120;124;g
+91;CARNES;Ensalada de at£n enlatada;1 lata mediana;135;261;g
+92;CARNES;Sardinas enlatadas;1 lata peque¤a;117;222;g
+93;CARNES;At£n en aceite enlatado;1 lata peque¤a;110;178;g
+94;CARNES;Salm¢n fresco;1 filet mediano;100;120;g
+95;CARNES;Mero;1 filet mediano;120;114;g
+96;CARNES;Pargo;1 filet mediano;120;98;g
+97;CARNES;At£n en agua enlatado;1 lata peque¤a;ÿ110;98;g
+98;ARROZ, PASTAS Y AFINES ;Papas fritas;ÿmedia taza;114;380;g
+99;ARROZ, PASTAS Y AFINES ;Pl tano verde (tostones);ÿmedio pl tano;150;262;g
+100;ARROZ, PASTAS Y AFINES ;Pl tano maduro frito;medio p tano;150;246;g
+101;ARROZ, PASTAS Y AFINES ;Yuca pelada y congelada;un trozo y medioÿÿ;190;243;g
+102;ARROZ, PASTAS Y AFINES ;Papa grande horneada;una unidad;150;200;g
+103;ARROZ, PASTAS Y AFINES ;Pasta cocida sin salsa;una taza;150;197;g
+104;ARROZ, PASTAS Y AFINES ;Yuca cocida;una taza;150;194;g
+105;ARROZ, PASTAS Y AFINES ;Pl tano maduro horneado;medio pl tano;150;172;g
+106;ARROZ, PASTAS Y AFINES ;Arroz blanco cocido;una taza;150;160;g
+107;ARROZ, PASTAS Y AFINES ;Papa cocida;una taza;150;150;g
+108;ARROZ, PASTAS Y AFINES ;Pl tano maduro salcochado;medio pl tano;150;136;g
+109;ARROZ, PASTAS Y AFINES ;Garbanzos;1 porci¢n;ÿ250;150;cc
+110;ARROZ, PASTAS Y AFINES ;Caraotas negras;1 porci¢n;ÿ250;130;cc
+111;ARROZ, PASTAS Y AFINES ;Caraotas blancas; 1 porci¢n;ÿ250;120;cc
+112;ARROZ, PASTAS Y AFINES ;Arvejas;1 botellaÿgrandeÿ;ÿ400;80;cc
+113;ARROZ, PASTAS Y AFINES ;Lentejas;1 porci¢n;ÿ225;80;cc
+114;ARROZ, PASTAS Y AFINES ;Caraotas blancas en salsa de tomateÿÿ;1 vaso;ÿ250;40;cc
+115;ACEITE,SALSAS Y OTROS PAR UNTAR;Salsa tipo ranchera;2 cucharadasÿ;ÿ60;230;g
+116;ACEITE,SALSAS Y OTROS PAR UNTAR;Salsa tipoÿCesar;2 cucharadasÿ;ÿ60;160;g
+117;ACEITE,SALSAS Y OTROS PAR UNTAR;Salsa de tomate con carne enlatada;media tazaÿ;150;140;g
+118;ACEITE,SALSAS Y OTROS PAR UNTAR;Jam¢n endiablado enlatado;una lata peque¤a;ÿ55;140;g
+119;ACEITE,SALSAS Y OTROS PAR UNTAR;Jam¢n endiablado enlatado;ÿ2 cucharadasÿ;ÿ30;76;g
+120;ACEITE,SALSAS Y OTROS PAR UNTAR;Aceite;1 cucharada;15;135;g
+121;ACEITE,SALSAS Y OTROS PAR UNTAR;Mayonesa regular;1 cucharada;15;100;g
+122;ACEITE,SALSAS Y OTROS PAR UNTAR;Margarina ¢ mantequilla;1 cucharada;15;110;g
+123;ACEITE,SALSAS Y OTROS PAR UNTAR;Vinagreta;2 cucharadasÿ;ÿ30;110;g
+124;ACEITE,SALSAS Y OTROS PAR UNTAR;Pasta con sabor a queso;2 cucharadas;ÿ30;95;g
+125;ACEITE,SALSAS Y OTROS PAR UNTAR;Queso fundido para untar;2 cucharadas;ÿ30;81;g
+126;ACEITE,SALSAS Y OTROS PAR UNTAR;Queso crema;2 cucharadas;ÿ30;80;g
+127;ACEITE,SALSAS Y OTROS PAR UNTAR;Margarina ligera;1 cucharada;ÿ15;60;g
+128;ACEITE,SALSAS Y OTROS PAR UNTAR;Reques¢n;2 cucharadas;ÿ30;70;g
+129;ACEITE,SALSAS Y OTROS PAR UNTAR;Nata;1 cucharada;ÿ20;65;g
+130;ACEITE,SALSAS Y OTROS PAR UNTAR;Mermelada;1 cucharada;ÿ20;60;g
+131;ACEITE,SALSAS Y OTROS PAR UNTAR;Pasta de h¡gado;1 cucharada;ÿ20;53;g
+132;ACEITE,SALSAS Y OTROS PAR UNTAR;Salsa de mostaza y miel;1 porci¢n;ÿ28;50;g
+133;ACEITE,SALSAS Y OTROS PAR UNTAR;Mayonesa ligera;1 cucharada;ÿ15;44;g
+134;ACEITE,SALSAS Y OTROS PAR UNTAR;Mermelada baja en az£car;1 cucharada;ÿ17;25;g
+135;ACEITE,SALSAS Y OTROS PAR UNTAR;Vinagre bals mico;1 cucharada;ÿ15;20;g
+136;ACEITE,SALSAS Y OTROS PAR UNTAR;Salsa de tomate tipo ketchup;10gÿ 1 sobrecito;ÿ15;10;g
+137;ACEITE,SALSAS Y OTROS PAR UNTAR;Mostaza;1 cucharada;ÿ15;13;g
+138;ACEITE,SALSAS Y OTROS PAR UNTAR;Vinagre blanco;1 cucharada;ÿ15;1;g
+139;EMBUTIDOS;Salchicha de cerdoÿ¢ de res;ÿ1 unidad;100;182;g
+140;EMBUTIDOS;Salchich¢n;1 rodaja;ÿ30;140;g
+141;EMBUTIDOS;Mortadela;1 unidad;ÿ50;140;g
+142;EMBUTIDOS;Tocineta; 2 tiras;ÿ20;120;g
+143;EMBUTIDOS;Chorizo tipo espa¤ol;1 unidad;ÿ30;114;g
+144;EMBUTIDOS;Salchicha de pavo;1 unidad;100;102;g
+145;EMBUTIDOS;Jam¢n serrano sin grasa;2 rebanadas;50;88;g
+146;EMBUTIDOS;Bolo¤a;ÿ 2 rebanadas;50;80;g
+147;EMBUTIDOS;Jam¢n de pierna;2 rebanadas;50;54;g
+148;EMBUTIDOS;Jam¢n de pollo;ÿ2 rebanadas;50;50;g
+149;EMBUTIDOS;Pechuga de pavo;ÿ2 lonjas;50;40;g
+150;EMBUTIDOS;Pechuga de pollo;ÿ2 lonjas;50;40;g
+151;LEGUMBRES CRUDAS;Aguacate; 3/4 taza;100;152;g
+152;LEGUMBRES CRUDAS;Zanahorias;3/4 taza;100;32;g
+153;LEGUMBRES CRUDAS;Acelgas, espinacas;3/4 taza;120;29;g
+154;LEGUMBRES CRUDAS;Tomate en lata;1/2 taza;100;20;g
+155;LEGUMBRES CRUDAS;Tomate;1/2 taza;100;16;g
+156;LEGUMBRES CRUDAS;Piment¢n;1/4 taza;50;12;g
+157;LEGUMBRES CRUDAS;Pepino; 1/2 taza;ÿ 90;11;g
+158;LEGUMBRES CRUDAS;Berro; 1/2 taza;ÿ 50;10;g
+159;LEGUMBRES CRUDAS;Cebolla;1/4 taza;ÿ 25;10;g
+160;LEGUMBRES CRUDAS;Lechuga;1/2 taza;ÿ 50;ÿ6;g
+161;LEGUMBRES COCINADAS;Mazorca de ma¡z;ÿ1 unidad;200;178;g
+162;LEGUMBRES COCINADAS;Ocumo;1/2 taza;100;109;g
+163;LEGUMBRES COCINADAS;Apio;ÿ1/2 taza;100;93;g
+164;LEGUMBRES COCINADAS;Ma¡z dulce en grano enlatado;1/2 taza;125;90;g
+165;LEGUMBRES COCINADAS;Ma¡z dulce en grano congelado;1/2 taza;100;85;g
+166;LEGUMBRES COCINADAS;Guisantes congelados;1/2 taza;125;80;g
+167;LEGUMBRES COCINADAS;Guisantes y zanahorias congelados;1/4 taza;85;78;g
+168;LEGUMBRES COCINADAS;Guisantes enlatados;1/2 taza;125;60;g
+169;LEGUMBRES COCINADAS;Palmito;2 trozos;145;55;g
+170;LEGUMBRES COCINADAS;Vegetales mixtos enlatados;1/2 taza;125;45;g
+171;LEGUMBRES COCINADAS;Alcachofa enlatada;1/2 taza;125;35;g
+172;LEGUMBRES COCINADAS;Remolacha;1/2 taza;100;35;g
+173;LEGUMBRES COCINADAS;Auyama;1/2 taza;100;30;g
+174;LEGUMBRES COCINADAS;Br¢coli congelado;1/2 taza;100;30;g
+175;LEGUMBRES COCINADAS;Vegetales mixtos congelados;1/2 taza;125;30;g
+176;LEGUMBRES COCINADAS;Chayota;3/4 taza;150;25;g
+177;LEGUMBRES COCINADAS;Berenjena;1/2 taza;100;22;g
+178;LEGUMBRES COCINADAS;Espinacas/acelgas;1/2 taza;125;20;g
+179;LEGUMBRES COCINADAS;Vainitas;1/2 taza;100;15;g
+180;LEGUMBRES COCINADAS;Coliflor;1/2 taza;100;14;g
+181;LEGUMBRES COCINADAS;Pepinillos en vinagre;1 grande;30;12;g
+182;LEGUMBRES COCINADAS;Calabac¡n;1/2 taza;100;10;g
+183;QUESOS;Amarillo holand‚s;2 rebanadas;50;199;g
+184;QUESOS;Amarillo americano;2 rebanadas;50;188ÿ;g
+185;QUESOS;Blanco suave;2 rebanadas;50;165ÿ;g
+186;QUESOS;Mozarela;2 rebanadas;50;119;g
+187;QUESOS;Parmesano rallado;1 cucharada;25;100;g
+188;QUESOS;Blanco duro rallado;1 cucharada;25;100;g
+189;QUESOS;Queso crema;2 cucharadas;30;113;g
+190;QUESOS;Reques¢n;2 cucharadas;30;50;g
+191;POSTRES Y DULCES;Tortas y pasteles;1 porci¢n;120;345;g
+192;POSTRES Y DULCES;Brazo gitano;1 porci¢n;115;290;g
+193;POSTRES Y DULCES;Helados;1 taza;150;270;g
+194;POSTRES Y DULCES;Donuts;1 unidad;120;175;g
+195;POSTRES Y DULCES;Chocolate en barra;1 barra;28;170;g
+196;POSTRES Y DULCES;Chocolate en barra;1 barra;50;226;g
+197;POSTRES Y DULCES;Torta casera ¢ biscocho;1 porci¢n;120;155;g
+198;POSTRES Y DULCES;Dulces de leche (arequipe);3 cucharadas;50;160;g
+199;POSTRES Y DULCES;Pasta dulce de avellana;2 cucharadas;30;160;g
+200;POSTRES Y DULCES;Sorbete ¢ helado de agua;1 taza;150;101;g
+201;POSTRES Y DULCES;Mermeladas;1 cucharada;20;56;g
+202;POSTRES Y DULCES;Ensalada de fruta enlatada;1 taza;120;84ÿ;g
+203;POSTRES Y DULCES;Gelatina regular;1/2 taza;100;65;g
+204;POSTRES Y DULCES;Gelatina ligera;1/2 taza;100;10;g
+205;POSTRES Y DULCES;Galleta rellena con crema de coco;1 paquete;ÿ50;250;g
+206;POSTRES Y DULCES;Galletas negras rellenas dobles;4 galletas;ÿ36;220;g
+207;POSTRES Y DULCES;Galletas negras rellenas;4 galletas;ÿ36;170;g
+208;POSTRES Y DULCES;Galletas dulces (tipo Mar¡a);1 paquete de 4;ÿ30;126;g
+209;PASABOCAS;Papas fritas;1 porci¢n grande;170;570;g
+210;PASABOCAS;Papas fritas;1 porci¢n mediana;114;380;g
+211;PASABOCAS;Papas fritas;1 porci¢n peque¤a;74;250;g
+212;PASABOCAS;Palitos de ma¡z con quesoÿÿ;1 paquete mediano;54;257;g
+213;PASABOCAS;Papitas (chips);1 paquete mediano;40;241;g
+214;PASABOCAS;Tri ngulos de ma¡z con queso (Doritos);1 paquete mediano;45;220;g
+215;PASABOCAS;Tostones;1 bolsa mediana;45;220;g
+216;PASABOCAS;Tostones;1 bolsa peque¤a;28;140;g
+217;PASABOCAS;Avellanas;2 cucharadas;30;187;g
+218;PASABOCAS;Man¡, pistacho, merey;2 cucharadas;30;175;g
+219;PASABOCAS;Cotufa;3 tazas;30;112;g
+220;PASABOCAS;Chicharrones;1 paquete;20;104;g
+221;COMIDAS PREPARADAS;Perro caliente;1 mediano;;300;g
+222;COMIDAS PREPARADAS;Empanada de carne;1 mediana;;280;g
+223;COMIDAS PREPARADAS;Carne mechada frita;1/2 taza;100;250;g
+224;COMIDAS PREPARADAS;Hamburguesa con queso;1 grande;;520;g
+225;COMIDAS PREPARADAS;Hamburguesa con queso;1 peque¤a;;250;g
+226;COMIDAS PREPARADAS;Mondongo;1 plato hondo;250;238;g
+227;COMIDAS PREPARADAS;Taco;1 unidad;;186;g
+228;COMIDAS PREPARADAS;Sancocho de gallina;1 plato hondo;250;185;g
+229;COMIDAS PREPARADAS;Pizza;1 porci¢n;150;178;g
+230;COMIDAS PREPARADAS;Salchicha de carne de res;1 grande;75;173;g
+231;COMIDAS PREPARADAS;Hervido de res;1 plato hondo;250;150;g
+232;COMIDAS PREPARADAS;Huevo cocido;1 unidad;80;ÿÿ75;g
+233;BEBIDAS ALCOHLICAS;Brandy;1 copa;80ÿ;200;cc
+234;BEBIDAS ALCOHLICAS;Ron;1 trago;60;180;cc
+235;BEBIDAS ALCOHLICAS;Cerveza;1 lata grande;350;150;cc
+236;BEBIDAS ALCOHLICAS;Cerveza;1 lata peque¤a;250;120;cc
+237;BEBIDAS ALCOHLICAS;Vodka, wisky ¢ ginebra;1 trago;60;140;cc
+238;BEBIDAS ALCOHLICAS;Vino dulce tipo moscatel;1 copa;120;130;cc
+239;BEBIDAS ALCOHLICAS;Jerez, vino blanco ¢ tinto;1 copa;120;125;cc
+240;BEBIDAS ALCOHLICAS;Vermut;1 copa;120;120;cc
+241;BEBIDAS ALCOHLICAS;Aguardiente;1 trago;30;90;cc
+242;BEBIDAS ALCOHLICAS;Champagne;1 copa;120;84;cc
+243;BEBIDAS ALCOHLICAS;Cerveza ligera;1 lata peque¤a;ÿ250;75;cc
