@@ -14,6 +14,7 @@ class WS {
     private $conexion, $op, $idhash;
     private $UTILITY;
     private $DATE_NOW = 'DATE_ADD(NOW(),INTERVAL 2 HOUR)';
+    public $id = "";
 
     function __construct() {
         $conexion = new Connect();
@@ -21,6 +22,7 @@ class WS {
         $this->conexion = $conexion->openConnect();
         $rqst = $_REQUEST;
         $this->op = $rqst['op'];
+        $this->id = intval($rqst['id']);
         header("Content-type: application/javascript; charset=utf-8");
         header("Cache-Control: max-age=15, must-revalidate");
         // con esto se evade la restriccion: Same origin policy
@@ -41,7 +43,16 @@ class WS {
             $this->nickname = $rqst['nickname'];
             $this->pais_residencia = $rqst['pais_residencia'];
             $this->estatura = $rqst['estatura'];
+            $this->objetivo_dieta = $rqst['objetivo_dieta'];
+            $this->nivel_actividad = $rqst['nivel_actividad'];
             $this->save_user();
+        } else if ($this->op == 'save_seguimiento') {
+            $this->nivel_actividad = $rqst['nivel_actividad'];
+            $this->calorias = $rqst['calorias'];
+            $this->peso = $rqst['peso'];
+            $this->save_seguimiento();
+        } else if ($this->op == 'get_seguimiento') {
+            $this->get_seguimiento();
         } else {
             $this->invalid_method_called();
         }
@@ -72,7 +83,7 @@ class WS {
      * Metodo para encriptar password
      */
     public function make_hash_pass($param1, $param2) {
-        if (strlen($param1) > 3 && strlen($param2) > 3){
+        if (strlen($param1) > 3 && strlen($param2) > 3) {
             $r = sha1($param1 . $param2 . 'asdf');
         } else {
             $r = sha1($param1 . '0000' . 'asdf');
@@ -91,7 +102,7 @@ class WS {
         } else {
             $pass = $this->make_hash_pass($this->email, $this->pass);
             $q = "SELECT * FROM tedi_usuario WHERE email = '$this->email' and pass = '$pass' ";
-            $con = mysql_query($q, $this->conexion) or die(mysql_error()."***ERROR: ".$q);
+            $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
             $resultado = mysql_num_rows($con);
             while ($obj = mysql_fetch_object($con)) {
                 $arrjson = array('output' => array(
@@ -104,63 +115,115 @@ class WS {
                         'sexo' => $obj->sexo,
                         'edad' => $obj->edad,
                         'pais_residencia' => ($obj->pais_residencia),
+                        'peso_actual' => ($obj->peso_actual),
+                        'nivel_actividad' => ($obj->nivel_actividad),
                         'estatura' => $obj->estatura));
             }
             if ($resultado == 0) {
-                $arrjson = array('output' => array('valid' => false, 'error' => "error en usuario o contraseña."));
+                $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' error en usuario o contraseña.')));
             }
         }
         echo json_encode($arrjson);
     }
-    
+
     /**
      * Metodo para guardar y actualizar usuarios
      * http://www.qsystems.com.co/tediws/ws.php?op=save_user&nombre=camilo&pass=camilo1&email=camilo@camilo.com&sexo=masculino&edad=27&nickname=caminick&pais_residencia=Colombia&estatura=180
      */
     public function save_user() {
-        //PRIMERO SE VERIFICA SI EL USUARIO QUE SE LOGUEA YA EXISTE.
-        $resultado = 0;
         $id = 0;
-        if (strlen($this->email) > 3) {
-            $q = "SELECT idUSUARIO FROM tedi_usuario WHERE email = '" . $this->email . "' ";
-            $con = mysql_query($q, $this->conexion) or die(mysql_error()."***ERROR: ".$q);
-            $resultado = mysql_num_rows($con);
-            while ($obj = mysql_fetch_object($con)) {
-                $id = $obj->idUSUARIO;
-            }
-            $pass = $this->make_hash_pass($this->email, $this->pass);
-            $table = "tedi_usuario";
-            $arrfieldscomma = array('nombre' => $this->nombre,
+        //consulta la existencia del usuario
+        $q = "SELECT idUSUARIO FROM tedi_usuario WHERE email = '" . $this->email . "' ";
+        $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+        $resultado = mysql_num_rows($con);
+        if (($this->id) > 0) {
+            //actualiza la informacion
+            if (strlen($this->email) > 3) {
+                $q = "SELECT idUSUARIO FROM tedi_usuario WHERE idUSUARIO = $this->id ";
+                $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                while ($obj = mysql_fetch_object($con)) {
+                    $id = $obj->idUSUARIO;
+                    if (strlen($this->pass)>0) {
+                        $pass = $this->make_hash_pass($this->email, $this->pass);
+                    } else {
+                        $pass = '';
+                    }
+                    $table = "tedi_usuario";
+                    $arrfieldscomma = array('nombre' => $this->nombre,
                         'pass' => $pass,
                         'nickname' => $this->nickname,
                         'email' => $this->email,
                         'sexo' => $this->sexo,
+                        'peso_actual' => $this->peso_actual,
+                        'objetivo_dieta' => $this->objetivo_dieta,
+                        'nivel_actividad' => $this->nivel_actividad,
                         'pais_residencia' => $this->pais_residencia);
-            
-            $arrfieldsnocomma = array('edad' => $this->edad, 
+                    $arrfieldsnocomma = array('edad' => $this->edad,
                         'estatura' => $this->estatura);
-            $q = $this->UTILITY->make_query_update($table, "idUSUARIO = '$id'", $arrfieldscomma, $arrfieldsnocomma);
-            mysql_query($q, $this->conexion) or die(mysql_error()."***ERROR: ".$q);
+                    $q = $this->UTILITY->make_query_update($table, "idUSUARIO = '$id'", $arrfieldscomma, $arrfieldsnocomma);
+                    mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                }
+            } else {
+                $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Faltan datos.')));
+            }
         } else {
-            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
-        }
-        //SI NO EXISTE UN USUARIO, ENTONCES SE CREA
-        if ($id == 0) {
-            $pass = $this->make_hash_pass($this->email, $this->pass);
-            $q = "INSERT INTO tedi_usuario (nombre, pass, nickname, email, sexo, edad, pais_residencia, estatura) VALUES ('$this->nombre', '$pass', '$this->nickname', '$this->email', '$this->sexo', $this->edad, '$this->pais', $this->estatura)";
-            mysql_query($q, $this->conexion) or die(mysql_error()."***ERROR: ".$q);
-            $id = mysql_insert_id();
-        } else {
-            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '3002', 'content' => 'Account already exists.')));
+            if ($resultado == 0) {
+                //crea el nuevo usuario
+                $pass = $this->make_hash_pass($this->email, $this->pass);
+                $q = "INSERT INTO tedi_usuario (nombre, pass, nickname, email, sexo, edad, pais_residencia, estatura, nivel_actividad, objetivo_dieta) VALUES ('$this->nombre', '$pass', '$this->nickname', '$this->email', '$this->sexo', $this->edad, '$this->pais_residencia', $this->estatura, '$this->nivel_actividad', '$this->objetivo_dieta')";
+                mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                $id = mysql_insert_id();
+            } else {
+                $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '3002', 'content' => 'ya existe.')));
+            }
         }
         $arrjson = array('output' => array('valid' => true, 'id' => $id));
         echo json_encode($arrjson);
     }
-    
+
+    /**
+     * Metodo para guardar el seguimiento del usuario
+     */
+    private function save_seguimiento() {
+        if ($this->id == 0) {
+            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
+        } else {
+            $q = "INSERT INTO tedi_seguimiento_pesonal (tedi_usuario_idUSUARIO, nivel_actividad, calorias_reportadas, peso, fecha) VALUES ($this->id, '$this->nivel_actividad', $this->calorias, $this->peso, NOW())";
+            mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            $q = "UPDATE tedi_usuario SET `peso_actual` = '$this->peso', `nivel_actividad` = '$this->nivel_actividad' WHERE idUSUARIO = $this->id";
+            mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            $id = mysql_insert_id();
+            $arrjson = array('output' => array('valid' => true, 'id' => $id, 'query' => $q));
+        }
+        echo json_encode($arrjson);
+    }
+
+    /**
+     * Metodo para consultar el seguimiento de un usuario
+     */
+    public function get_seguimiento() {
+        if ($this->id == 0) {
+            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
+        } else {
+            $q = "SELECT * FROM tedi_seguimiento_pesonal WHERE tedi_usuario_idUSUARIO = ".$this->id." ORDER BY fecha DESC";
+            $con = mysql_query($q, $this->conexion);
+            $arr = array();
+            while ($obj = mysql_fetch_object($con)) {
+                $arr[] = array(
+                    'nivel_actividad' => $obj->nivel_actividad,
+                    'calorias_reportadas' => $obj->calorias_reportadas,
+                    'peso' => $obj->peso,
+                    'fecha' => ($obj->fecha)
+                );
+            }
+            $arrjson = array('output' => array('valid' => true, 'response' => $arr));
+        }
+        echo json_encode($arrjson);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////
     //// OPERACIONES DEL EJEMPLO DE SALUDPRIMERO  ////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////
-
     //http://www.qsystems.com.co/saludpws/ws.php?op=get_location
     public function get_location() {
         $q = "SELECT * FROM qas_ubicacion";
