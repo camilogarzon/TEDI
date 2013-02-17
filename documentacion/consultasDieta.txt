@@ -1,0 +1,41 @@
+LOGICA PARA REGISTRAR EL CONSUMO DE ALIMENTOS EN TEDI
+
+- ir a "hora de comer" -
+1 seleccionar tipo de comida (desayuno, mediamañana, almuerzo, snack, etc).
+2 seleccionar una opcion dentro de la lista de los platos, por defecto la que esta en la opcion "dieta" del menu del usuario.
+3 ver alimentos del plato seleccionado.
+4 agregar o eliminar un alimento al registro de consumo segun lo que se haya comido.
+5 presionar "hecho", como accion de registro de los alimentos consumidos
+6 calcular calorias consumidas y totales acumuladas en el dia
+7 guardar lo que se comio.
+
+CONSULTAS NECESARIAS
+
+1. consultar platos del menu por tipo de menu
+ej.
+esta consulta devuelve la carta de platos para desayunos
+
+SELECT * FROM `tedi_menu` WHERE tipo_menu = "DESAYUNO"
+
+**************************************************************************************
+
+2-3. consultar los alimentos que conforman un plato del menu
+ej.
+esta consulta devuelve el menu (1), compuesta por:
+
+++ arepa mediana
+++ jugo de naranja
+++ queso crema
+
+SELECT * FROM `tedi_alimentos` WHERE idalimentos IN ( SELECT tedi_alimentos_idalimentos FROM `tedi_menu_has_tedi_alimentos` WHERE  tedi_menu_idmenu = 1);
+
+**************************************************************************************
+
+4-5 agregar un elemeto al registro historico de alimentacion (insertar reg. a tabla tedi_historial_dieta con el menu y los alimentos extras o que se restaron al menu,
+en otras palabras, los alimentos realmente consumidos ).
+
+ej. a continuacion se almacena un alimento consumido (una arepa), perteneciente al menu 1 (arepa con jugo de naranja y queso crema).
+
+INSERT INTO tedi_historial_dieta VALUES (NULL ,  '1',  '1',  '45', NOW( ) ,  '1'); 
+
+

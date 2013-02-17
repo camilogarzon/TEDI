@@ -53,7 +53,19 @@ class WS {
             $this->save_seguimiento();
         } else if ($this->op == 'get_seguimiento') {
             $this->get_seguimiento();
-        } else {
+        } else if ($this->op == 'get_tipo_menu') {
+			$this->tipo_menu = $rqst['tipo_menu'];
+			$this->get_menu_type();
+		} else if ($this->op == 'get_elementos_menu'){
+			$this->id_menu = $rqst['tipo_menu'];
+			$this->get_menu_elements();
+		} else if ($this->op == 'get_elementos_menu'){
+			$this->id_menu = $rqst['id_menu'];
+			$this->id_dieta = $rqst['id_dieta'];
+			$this->id_alimento = $rqst['id_alimento'];
+			$this->numero_porciones = $rqst['numero_porciones'];
+			$this->save_alimento_consumido();
+		}  else {
             $this->invalid_method_called();
         }
     }
@@ -212,8 +224,57 @@ class WS {
                 $arr[] = array(
                     'nivel_actividad' => $obj->nivel_actividad,
                     'calorias_reportadas' => $obj->calorias_reportadas,
-                    'peso' => $obj->peso,
-                    'fecha' => ($obj->fecha)
+                    'peso' => $obj->peso
+                );
+            }
+            $arrjson = array('output' => array('valid' => true, 'response' => $arr));
+        }
+        echo json_encode($arrjson);
+    }
+	
+	/**
+     * Metodo para seleccionar tipos de menus (desayunos, almuerzos y comidas, meriendas, etc)
+     * http://www.qsystems.com.co/tediws/ws.php?op=get_tipo_menu&tipo_menu=desayuno     
+	 */
+	public function get_menu_type() {
+        if ($this->tipo_menu == "") {
+            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
+        } else {
+            $q = "SELECT * FROM `tedi_menu` WHERE tipo_menu = ".$this->tipo_menu." ORDER BY nombre_menu ASC";
+            $con = mysql_query($q, $this->conexion);
+            $arr = array();
+            while ($obj = mysql_fetch_object($con)) {
+                $arr[] = array(
+                    'nombre_menu' => $obj->nombre_menu,
+                    'tipo_menu' => $obj->tipo_menu,
+                );
+            }
+            $arrjson = array('output' => array('valid' => true, 'response' => $arr));
+        }
+        echo json_encode($arrjson);
+    }
+	
+	/**
+     * Metodo para seleccionar los alimentos que conforman un menu seleccionado
+     * http://www.qsystems.com.co/tediws/ws.php?op=get_elementos_menu&id_menu=1, este ultimo menu 1 es por ej. arepa con queso crema y jugo naranja     
+	 */
+	public function get_menu_elements() {
+        if ($this->id_menu == "") {
+            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
+        } else {
+			$q = "SELECT * FROM `tedi_alimentos` WHERE idalimentos IN ( SELECT tedi_alimentos_idalimentos FROM `tedi_menu_has_tedi_alimentos` WHERE  tedi_menu_idmenu = ".$this->id_menu.")";
+            $con = mysql_query($q, $this->conexion);
+            $arr = array();
+            while ($obj = mysql_fetch_object($con)) {
+                $arr[] = array(
+                    'nombre' => $obj->nombre,
+                    'porcion_tipo' => $obj->porcion_tipo,
+					'porcion_gramos' => $obj->porcion_gramos,
+					'categoria' => $obj->categoria,
+					'calorias_porcion' => $obj->calorias_porcion,
+					'es_bebida' => $obj->es_bebida,
+					'unidad_medida' => $obj->unidad_medida,
+					'porcion_popular' => $obj->porcion_popular,
                 );
             }
             $arrjson = array('output' => array('valid' => true, 'response' => $arr));
