@@ -59,12 +59,12 @@ class WS {
 		} else if ($this->op == 'get_elementos_menu'){
 			$this->id_menu = $rqst['tipo_menu'];
 			$this->get_menu_elements();
-		} else if ($this->op == 'get_elementos_menu'){
-			$this->id_menu = $rqst['id_menu'];
-			$this->id_dieta = $rqst['id_dieta'];
-			$this->id_alimento = $rqst['id_alimento'];
-			$this->numero_porciones = $rqst['numero_porciones'];
-			$this->save_alimento_consumido();
+		} else if ($this->op == 'save_evento_comida'){
+			$this->id_menu = $rqst['menu_id'];
+			$this->id_dieta = $rqst['dieta_id'];
+			$this->id_alimento = $rqst['alimento_id'];
+			$this->numero_porciones = $rqst['porciones'];
+			$this->save_evento_comida();
 		}  else {
             $this->invalid_method_called();
         }
@@ -209,6 +209,28 @@ class WS {
         }
         echo json_encode($arrjson);
     }
+	
+	
+	/**
+     * Metodo para guardar el evento de alimentacion
+	 *ej. a continuacion se almacena un alimento consumido (una arepa), perteneciente al menu 1 (arepa con jugo de naranja y queso crema).
+	 * http://www.qsystems.com.co/tediws/ws.php?op=save_alimento_consumido&menu_id=1&dieta_id=1&alimento_id=1&porciones=1     
+     */
+    private function save_alimento_consumido() {
+        if ($this->id == 0) {
+            $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
+        } else {
+            $q = "INSERT INTO tedi_historial_dieta VALUES (NULL, '$this->menu_id', $this->dieta_id, $this->alimento_id, NOW(), $this->porciones )";
+			mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            //dudas here
+			//$q = "UPDATE tedi_historial SET `tedi_menu_idmenu` = '$this->menu_id', `tedi_dieta_iddieta` = '$this->dieta_id', `tedi_alimentos_idalimentos` = '$this->alimento_id' WHERE idUSUARIO = $this->id";
+            //mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            $id = mysql_insert_id();
+            $arrjson = array('output' => array('valid' => true, 'id' => $id, 'query' => $q));
+        }
+        echo json_encode($arrjson);
+    }
+	
 
     /**
      * Metodo para consultar el seguimiento de un usuario
