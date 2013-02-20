@@ -251,7 +251,7 @@ class Util{
 	 */
 	public static function make_query_select($tables, $where = "", $fields = ""){
 		$query = "SELECT * FROM "; if ($tables == null || strlen($tables) < 1) { return "***Falta nombre de la tabla***";} $f = (strlen($fields) > 2) ? $fields : "*"; $query = "SELECT ".$f." FROM ".$tables." "; if (strlen($where) > 2) { $query .= " WHERE ".$where." ";} return $query;
-
+        }
 	
 	/**
 	 * Metodo para construir un INSERT.

@@ -74,3 +74,4 @@ CREATE TABLE tedi_usuario (
   PRIMARY KEY(idUSUARIO)
 );
 
+ALTER TABLE  `tedi_historial_dieta` ADD  `tedi_usuario_idUSUARIO` INTEGER UNSIGNED NULL;

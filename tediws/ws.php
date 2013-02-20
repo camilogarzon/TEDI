@@ -54,18 +54,18 @@ class WS {
         } else if ($this->op == 'get_seguimiento') {
             $this->get_seguimiento();
         } else if ($this->op == 'get_tipo_menu') {
-			$this->tipo_menu = $rqst['tipo_menu'];
-			$this->get_menu_type();
-		} else if ($this->op == 'get_elementos_menu'){
-			$this->id_menu = $rqst['tipo_menu'];
-			$this->get_menu_elements();
-		} else if ($this->op == 'save_evento_comida'){
-			$this->id_menu = $rqst['menu_id'];
-			$this->id_dieta = $rqst['dieta_id'];
-			$this->id_alimento = $rqst['alimento_id'];
-			$this->numero_porciones = $rqst['porciones'];
-			$this->save_evento_comida();
-		}  else {
+            $this->tipo_menu = $rqst['tipo_menu'];
+            $this->get_menu_type();
+        } else if ($this->op == 'get_elementos_menu') {
+            $this->id_menu = $rqst['id_menu'];
+            $this->get_menu_elements();
+        } else if ($this->op == 'save_alimento_consumido') {
+            $this->id_menu = $rqst['menu_id'];
+            $this->id_dieta = $rqst['dieta_id'];
+            $this->id_alimento = $rqst['alimento_id'];
+            $this->numero_porciones = $rqst['porciones'];
+            $this->save_alimento_consumido();
+        } else {
             $this->invalid_method_called();
         }
     }
@@ -155,7 +155,7 @@ class WS {
                 $con = mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
                 while ($obj = mysql_fetch_object($con)) {
                     $id = $obj->idUSUARIO;
-                    if (strlen($this->pass)>0) {
+                    if (strlen($this->pass) > 0) {
                         $pass = $this->make_hash_pass($this->email, $this->pass);
                     } else {
                         $pass = '';
@@ -202,35 +202,35 @@ class WS {
         } else {
             $q = "INSERT INTO tedi_seguimiento_pesonal (tedi_usuario_idUSUARIO, nivel_actividad, calorias_reportadas, peso, fecha) VALUES ($this->id, '$this->nivel_actividad', $this->calorias, $this->peso, NOW())";
             mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-            $q = "UPDATE tedi_usuario SET `peso_actual` = '$this->peso', `nivel_actividad` = '$this->nivel_actividad' WHERE idUSUARIO = $this->id";
-            mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            if ($this->calorias == 0){
+                $q = "UPDATE tedi_usuario SET `peso_actual` = '$this->peso', `nivel_actividad` = '$this->nivel_actividad' WHERE idUSUARIO = $this->id";
+                mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            }
             $id = mysql_insert_id();
             $arrjson = array('output' => array('valid' => true, 'id' => $id, 'query' => $q));
         }
         echo json_encode($arrjson);
     }
-	
-	
-	/**
+
+    /**
      * Metodo para guardar el evento de alimentacion
-	 *ej. a continuacion se almacena un alimento consumido (una arepa), perteneciente al menu 1 (arepa con jugo de naranja y queso crema).
-	 * http://www.qsystems.com.co/tediws/ws.php?op=save_alimento_consumido&menu_id=1&dieta_id=1&alimento_id=1&porciones=1     
+     * ej. a continuacion se almacena un alimento consumido (una arepa), perteneciente al menu 1 (arepa con jugo de naranja y queso crema).
+     * http://www.qsystems.com.co/tediws/ws.php?op=save_alimento_consumido&menu_id=1&dieta_id=1&alimento_id=1&porciones=1     
      */
     private function save_alimento_consumido() {
         if ($this->id == 0) {
             $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
         } else {
             $q = "INSERT INTO tedi_historial_dieta VALUES (NULL, '$this->menu_id', $this->dieta_id, $this->alimento_id, NOW(), $this->porciones )";
-			mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+            mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
             //dudas here
-			//$q = "UPDATE tedi_historial SET `tedi_menu_idmenu` = '$this->menu_id', `tedi_dieta_iddieta` = '$this->dieta_id', `tedi_alimentos_idalimentos` = '$this->alimento_id' WHERE idUSUARIO = $this->id";
+            //$q = "UPDATE tedi_historial SET `tedi_menu_idmenu` = '$this->menu_id', `tedi_dieta_iddieta` = '$this->dieta_id', `tedi_alimentos_idalimentos` = '$this->alimento_id' WHERE idUSUARIO = $this->id";
             //mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
             $id = mysql_insert_id();
             $arrjson = array('output' => array('valid' => true, 'id' => $id, 'query' => $q));
         }
         echo json_encode($arrjson);
     }
-	
 
     /**
      * Metodo para consultar el seguimiento de un usuario
@@ -239,34 +239,36 @@ class WS {
         if ($this->id == 0) {
             $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
         } else {
-            $q = "SELECT * FROM tedi_seguimiento_pesonal WHERE tedi_usuario_idUSUARIO = ".$this->id." ORDER BY fecha DESC";
+            $q = "SELECT * FROM tedi_seguimiento_pesonal WHERE tedi_usuario_idUSUARIO = " . $this->id . " ORDER BY fecha DESC";
             $con = mysql_query($q, $this->conexion);
             $arr = array();
             while ($obj = mysql_fetch_object($con)) {
                 $arr[] = array(
                     'nivel_actividad' => $obj->nivel_actividad,
                     'calorias_reportadas' => $obj->calorias_reportadas,
-                    'peso' => $obj->peso
+                    'peso' => $obj->peso,
+                    'fecha' => ($obj->fecha)
                 );
             }
             $arrjson = array('output' => array('valid' => true, 'response' => $arr));
         }
         echo json_encode($arrjson);
     }
-	
-	/**
+
+    /**
      * Metodo para seleccionar tipos de menus (desayunos, almuerzos y comidas, meriendas, etc)
      * http://www.qsystems.com.co/tediws/ws.php?op=get_tipo_menu&tipo_menu=desayuno     
-	 */
-	public function get_menu_type() {
+     */
+    public function get_menu_type() {
         if ($this->tipo_menu == "") {
             $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
         } else {
-            $q = "SELECT * FROM `tedi_menu` WHERE tipo_menu = ".$this->tipo_menu." ORDER BY nombre_menu ASC";
+            $q = "SELECT * FROM `tedi_menu` WHERE tipo_menu = '" . $this->tipo_menu . "' ORDER BY nombre_menu ASC";
             $con = mysql_query($q, $this->conexion);
             $arr = array();
             while ($obj = mysql_fetch_object($con)) {
                 $arr[] = array(
+                    'id' => $obj->idmenu,
                     'nombre_menu' => $obj->nombre_menu,
                     'tipo_menu' => $obj->tipo_menu,
                 );
@@ -275,28 +277,29 @@ class WS {
         }
         echo json_encode($arrjson);
     }
-	
-	/**
+
+    /**
      * Metodo para seleccionar los alimentos que conforman un menu seleccionado
      * http://www.qsystems.com.co/tediws/ws.php?op=get_elementos_menu&id_menu=1, este ultimo menu 1 es por ej. arepa con queso crema y jugo naranja     
-	 */
-	public function get_menu_elements() {
+     */
+    public function get_menu_elements() {
         if ($this->id_menu == "") {
             $arrjson = array('output' => array('valid' => false, 'response' => array('code' => '2001', 'content' => ' Missing parameters.')));
         } else {
-			$q = "SELECT * FROM `tedi_alimentos` WHERE idalimentos IN ( SELECT tedi_alimentos_idalimentos FROM `tedi_menu_has_tedi_alimentos` WHERE  tedi_menu_idmenu = ".$this->id_menu.")";
+            $q = "SELECT * FROM `tedi_alimentos` WHERE idalimentos IN ( SELECT tedi_alimentos_idalimentos FROM `tedi_menu_has_tedi_alimentos` WHERE  tedi_menu_idmenu = " . $this->id_menu . ")";
             $con = mysql_query($q, $this->conexion);
             $arr = array();
             while ($obj = mysql_fetch_object($con)) {
                 $arr[] = array(
+                    'id' => $obj->idalimentos,
                     'nombre' => $obj->nombre,
                     'porcion_tipo' => $obj->porcion_tipo,
-					'porcion_gramos' => $obj->porcion_gramos,
-					'categoria' => $obj->categoria,
-					'calorias_porcion' => $obj->calorias_porcion,
-					'es_bebida' => $obj->es_bebida,
-					'unidad_medida' => $obj->unidad_medida,
-					'porcion_popular' => $obj->porcion_popular,
+                    'porcion_gramos' => $obj->porcion_gramos,
+                    'categoria' => $obj->categoria,
+                    'calorias_porcion' => $obj->calorias_porcion,
+                    'es_bebida' => $obj->es_bebida,
+                    'unidad_medida' => $obj->unidad_medida,
+                    'porcion_popular' => $obj->porcion_popular,
                 );
             }
             $arrjson = array('output' => array('valid' => true, 'response' => $arr));

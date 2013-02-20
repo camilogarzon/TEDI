@@ -79,10 +79,10 @@
                     ¿Quieres una dieta sin cambiar lo que comes?
                 </h3>
                 <div align="center" data-role="fieldcontain">
-                    <input name="email1" id="email1" placeholder="Email" value="camilo@camilo.com" type="email" />
+                    <input name="email1" id="email1" placeholder="Email" value="" type="email" />
                 </div>
                 <div align="center" data-role="fieldcontain">
-                    <input name="passwor" id="passwor" placeholder="Contraseña" value="camilo" type="password" />
+                    <input name="passwor" id="passwor" placeholder="Contraseña" value="" type="password" />
                 </div>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
@@ -415,6 +415,88 @@
             </div>
         </div>
         <div data-role="page" id="page8">
+            <script type="text/javascript">
+                function selectTipo(){
+                    var st = $('#selectTipoMenu').val();
+                    if ( st =="seleccione"){alert('Seleccione comida.');return false;}
+                    query = 'op=get_tipo_menu&tipo_menu='+st;
+                    $('#selectMenu').empty();
+                    $('#selectMenu').append('<option value="seleccione">Seleccione menu...</option>');
+                    $('#selectMenu').val('seleccione');
+                    callAjax(query, selectTipoHandler);
+                }
+                function selectTipoHandler(data){
+                    if (data.output.valid){
+                        $('#selectMenu').empty();
+                        var res = data.output.response;
+                        var opti = '<option value="seleccione">Seleccione menu...</option>';
+                        for (var i in res){
+                            opti += '<option value="'+res[i].id+'">'+res[i].nombre_menu+'</option>';
+                            console.log(i+'typeof res = '+ typeof res[i]);
+                            console.log(i+'typeof nombre_menu = '+ typeof res[i].nombre_menu);
+                            console.log(i+'typeof id = '+ typeof res[i].id);
+                        }
+                        $('#selectMenu').append(opti);
+                    } else {
+                        alert('Error al cargar menu. ' + data.output.response.content);
+                    }                    
+                }
+                function selectMenu(){
+                    var sm = $('#selectMenu').val();
+                    if ( sm =="seleccione"){alert('Seleccione menu.');return false;}
+                    query = 'op=get_elementos_menu&id_menu='+sm;
+                    callAjax(query, selectMenuHandler);
+                }
+                function selectMenuHandler(data){
+                    if (data.output.valid){
+                        $('#menu_elements').empty();
+                        $('#calorias_consumo').empty();
+                        var res = data.output.response;
+                        var opti = '';
+                        var cal = 0;
+                        for (var i in res){
+                            cal += parseInt(res[i].calorias_porcion);
+                            opti += '<div><div style="float: left"><input type="hidden" name="hidden'+i+'" id="hidden'+i+'" class="custom" value="'+res[i].id+'"></div><div>'+res[i].nombre+'</div></div><br>';
+                            //opti += '<div><div style="float: left"><input type="checkbox" name="checkbox-'+i+'a" id="checkbox-'+i+'a" class="custom" value="'+res[i].id+'"></div><div>'+res[i].nombre+'</div></div><br>';
+                            //opti += '<div class="ui-checkbox"><input type="checkbox" name="checkbox-'+i+'a" id="checkbox-'+i+'a" class="custom" value="'+res[i].id+'"><label for="checkbox-'+i+'a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">'+res[i].nombre+'</span></span></label></div>';
+                        }
+                        $('#calorias_consumo').append(cal);
+                        $('#calorias_consumo_hidden').val(cal);
+                        $('#menu_elements').append(opti);
+                    } else {
+                        alert('Error al cargar elementos. ' + data.output.response.content);
+                    }
+                }
+                function saveMenu(){
+                    user_obj = getLSO('user_obj');
+                    user_id = '';
+                    calor = $('#calorias_consumo_hidden').val();
+                    if (user_obj != null){
+                        user_id = user_obj.id;
+                        $('#user_peso_actual').empty(); $('#user_peso_actual').append(user_obj.peso_actual);
+                        var PesoIdeal = calcPesoIdeal(user_obj.sexo, user_obj.peso_actual, user_obj.estatura);
+                        $('#user_peso_ideal').empty(); $('#user_peso_ideal').append(PesoIdeal);
+                        PesoIdeal = roundNumber((user_obj.peso_actual - PesoIdeal), 2);
+                        if (PesoIdeal < 0){PesoIdeal = PesoIdeal*(-1);}
+                        $('#user_peso_meta').empty(); $('#user_peso_meta').append(PesoIdeal);
+                    }else{
+                        user_id = getLSS('user_id');
+                    }
+                    query = 'op=save_seguimiento&id=' + user_id +'&nivel_actividad=0&calorias='+calor+'&peso=0';
+                    callAjax(query, saveMenuHandler);
+                }
+
+                function saveMenuHandler(data){
+                    if (data.output.valid){
+                        $('#peso2').val('');
+                        $('#nivel_actividad2').val('seleccione');
+                        window.location = '#page11';
+                    } else {
+                        alert('Error al guardar menu. ' + data.output.response.content);
+                    }
+                }
+
+            </script>
             <div data-role="header" data-position="fixed">
                 <a href="#page6" data-transition="none" data-role="button" data-icon="home" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Home" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
                 <h1>TEDI</h1>
@@ -422,34 +504,65 @@
                 <h2>Hora de Comer!</h2>
             </div>
             <div align="center" data-role="content">
-                <ul data-role="listview" class="ui-listview">
-                    <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">
-                        <a href="#page8" data-transition="none" data-role="button" data-icon="refresh" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="refresh" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Refrescar</span><span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;</span></span></a>
-                        Desayuno: 500 cal
-                        <a href="#page8" data-transition="none" data-role="button" data-icon="minus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="delete" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right30px"><span class="ui-btn-inner"><span class="ui-btn-text">Quitar</span><span class="ui-icon ui-icon-minus ui-icon-shadow">&nbsp;</span></span></a>
-                        <a href="#page8" data-transition="none" data-role="button" data-icon="plus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="agregar" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right10px"><span class="ui-btn-inner"><span class="ui-btn-text">Agregar</span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></a>
-                    </li>
-                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c">
-                        <fieldset data-role="controlgroup" class="ui-corner-all ">
-                            <div class="ui-controlgroup ui-controlgroup-controls">
-                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom"><label for="checkbox-1a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">1 Arepa</span></span></label></div>
-                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom"><label for="checkbox-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Tajada de queso</span></span></label></div>
-                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom"><label for="checkbox-3a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Galleta integral</span></span></label></div>
-                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom"><label for="checkbox-4a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-bottom ui-controlgroup-last ui-btn-up-c"><span class="ui-btn-inner ui-corner-bottom ui-controlgroup-last"><span class="ui-btn-text">1 Taza de chocolate</span></span></label></div>
-                            </div>
-                        </fieldset>
-                    </li>              
-                </ul>
+                <select id="selectTipoMenu" onchange="selectTipo()">
+                    <option value="seleccione">Seleccione comida...</option>
+                    <option value="desayuno">Desayuno</option>
+                    <option value="mediamanana">Media Mañana</option>
+                    <option value="almuerzo">Almuerzo</option>
+                    <option value="algo">Algo</option>
+                    <option value="comida">Comida</option>
+                    <option value="merienda">Merienda</option>
+                </select>
+                <select id="selectMenu" onchange="selectMenu()">
+                    <option value="seleccione">Seleccione menu...</option>
+                </select>
+
+                <h2 id="nombre_menu"></h2>
+                <div id="menu_elements">
+                </div>
+
+                <br/>
+                <h2>Vas a consumir <span id="calorias_consumo">###</span> calorías.</h2>
+                <input type="hidden" id="calorias_consumo_hidden" name="calorias_consumo_hidden" value="0"/>
                 <br/>
                 <h3>¿HECHO?</h3>
                 <div class="ui-grid-a" align="center">
                     <div class="ui-block-a" align="center">
-                        <a href="#page6" data-role="button" data-icon="check" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">Sí</span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
+                        <a href="" data-role="button" data-icon="check" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c" onclick="saveMenu()"><span class="ui-btn-inner"><span class="ui-btn-text">Sí</span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
                     </div>
                     <div class="ui-block-b" align="center">
                         <a href="#page6" data-role="button" data-icon="delete" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">No</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
                     </div>
-                </div>
+                </div>                
+
+                <!--                <ul data-role="listview" class="ui-listview">
+                                    <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b">
+                                        <a href="#page8" data-transition="none" data-role="button" data-icon="refresh" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="refresh" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b"><span class="ui-btn-inner"><span class="ui-btn-text">Refrescar</span><span class="ui-icon ui-icon-refresh ui-icon-shadow">&nbsp;</span></span></a>
+                                        Desayuno: 500 cal
+                                        <a href="#page8" data-transition="none" data-role="button" data-icon="minus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="delete" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right30px"><span class="ui-btn-inner"><span class="ui-btn-text">Quitar</span><span class="ui-icon ui-icon-minus ui-icon-shadow">&nbsp;</span></span></a>
+                                        <a href="#page8" data-transition="none" data-role="button" data-icon="plus" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="agregar" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-b right10px"><span class="ui-btn-inner"><span class="ui-btn-text">Agregar</span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></a>
+                                    </li>
+                                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c">
+                                        <fieldset data-role="controlgroup" class="ui-corner-all ">
+                                            <div class="ui-controlgroup ui-controlgroup-controls">
+                                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom"><label for="checkbox-1a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-top ui-btn-up-c"><span class="ui-btn-inner ui-corner-top"><span class="ui-btn-text">1 Arepa</span></span></label></div>
+                                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom"><label for="checkbox-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Tajada de queso</span></span></label></div>
+                                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom"><label for="checkbox-3a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">1 Galleta integral</span></span></label></div>
+                                                <div class="ui-checkbox"><input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom"><label for="checkbox-4a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="checkbox-off" data-theme="c" class="ui-btn ui-btn-icon-left ui-checkbox-off ui-corner-bottom ui-controlgroup-last ui-btn-up-c"><span class="ui-btn-inner ui-corner-bottom ui-controlgroup-last"><span class="ui-btn-text">1 Taza de chocolate</span></span></label></div>
+                                            </div>
+                                        </fieldset>
+                                    </li>              
+                                </ul>
+                                <br/>
+                                <h3>¿HECHO?</h3>
+                                <div class="ui-grid-a" align="center">
+                                    <div class="ui-block-a" align="center">
+                                        <a href="#page6" data-role="button" data-icon="check" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">Sí</span><span class="ui-icon ui-icon-check ui-icon-shadow">&nbsp;</span></span></a>
+                                    </div>
+                                    <div class="ui-block-b" align="center">
+                                        <a href="#page6" data-role="button" data-icon="delete" data-iconpos="left" data-mini="true" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">No</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+                                    </div>
+                                </div>-->
 
             </div>
         </div>
@@ -564,37 +677,67 @@
                 <h3>¡<span id="user_peso_meta"></span> Kgs para cumplir tu meta!</h3>
                 <div class="ui-grid-a" align="center">
                     <div class="ui-block-a" align="center">
-                        <a data-role="button" href="" data-transition="none" onclick="getSeguimiento();">
-                            Ver Tabla
+                        <a data-role="button" href="" data-transition="none" onclick="getSeguimiento(0);">
+                            Ver Peso
                         </a>
                     </div>
                     <div class="ui-block-b" align="center">
-                        <a data-role="button" href="#page13" data-transition="none">
-                            Ver Gráfica
+                        <a data-role="button" href="" data-transition="none" onclick="getSeguimiento(1);">
+                            Ver Calorías
                         </a>
                     </div>
+                    <!--                    <div class="ui-block-b" align="center">
+                                            <a data-role="button" href="#page13" data-transition="none">
+                                                Ver Gráfica
+                                            </a>
+                                        </div>-->
                 </div>          
             </div>
         </div>
         <div data-role="page" id="page12">
             <script type="text/javascript">
-                function getSeguimiento(){
+                function getSeguimiento(tipo){
                     user_id = getLSS('user_id');
                     query = 'op=get_seguimiento&id=' + user_id;
-                    callAjax(query, getSeguimientoHandler);
+                    if (tipo == 0){
+                        callAjax(query, getSeguimientoHandler0);
+                    } else if (tipo == 1) {
+                        callAjax(query, getSeguimientoHandler1);
+                    }
+                    
                 }
 
-                function getSeguimientoHandler(data){
+                function getSeguimientoHandler0(data){
                     if (data.output.valid){
                         var rows = data.output.response;
                         var rowData = '';
                         for (var i in rows){
-                            rowData += '<tr><td><b class="ui-table-cell-label">Fecha</b><div align="center" style="float:right;">'+rows[i].fecha+'</div></td>';
-                            rowData += '<td><b class="ui-table-cell-label">Peso (Kgs)</b><div align="center" style="float:right;">'+rows[i].peso+'</div></td><td>&nbsp;</td></tr>';
+                            if (rows[i].peso != 0) {
+                                rowData += '<tr><td><b class="ui-table-cell-label">Fecha</b><div align="center" style="float:right;">'+rows[i].fecha+'</div></td>';
+                                rowData += '<td><b class="ui-table-cell-label">Peso (Kgs)</b><div align="center" style="float:right;">'+rows[i].peso+'</div></td><td>&nbsp;</td></tr>';
+                            }
                         }
                         $('#table_evolution').empty();
                         $('#table_evolution').append(rowData);
                         window.location = '#page12';
+                    } else {
+                        alert('Error al recuperar datos. ' + data.output.response.content);
+                    }
+                }
+
+                function getSeguimientoHandler1(data){
+                    if (data.output.valid){
+                        var rows = data.output.response;
+                        var rowData = '';
+                        for (var i in rows){
+                            if (rows[i].calorias_reportadas != 0) {
+                                rowData += '<tr><td><b class="ui-table-cell-label">Fecha</b><div align="center" style="float:right;">'+rows[i].fecha+'</div></td>';
+                                rowData += '<td><b class="ui-table-cell-label">Peso (Kgs)</b><div align="center" style="float:right;">'+rows[i].calorias_reportadas+'</div></td><td>&nbsp;</td></tr>';
+                            }
+                        }
+                        $('#table_evolution1').empty();
+                        $('#table_evolution1').append(rowData);
+                        window.location = '#page13';
                     } else {
                         alert('Error al recuperar datos. ' + data.output.response.content);
                     }
@@ -630,6 +773,36 @@
             </div>
         </div>
         <div data-role="page" id="page13">
+            <div data-theme="a" data-role="header" data-position="fixed">
+                <a href="#page6" data-transition="none" data-role="button" data-icon="home" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Home" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+                <h1>TEDI</h1>
+                <a href="#page6" data-transition="none" data-role="button" data-icon="info" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Info" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Info</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+                <h2>
+                    Tabla - Mi Evolución
+                </h2>
+            </div>
+            <div align="center" data-role="content">
+                <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke ui-table ui-table-reflow">
+                    <thead>
+                        <tr>
+                            <th data-priority="1">Fecha</th>
+                            <th data-priority="2">Calorías (cal)</th>
+                            <th data-priority="3">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_evolution1">
+                        <tr><td><b class="ui-table-cell-label">Fecha</b><div align="center" style="float:right;">2013-01-12</div></td>
+                            <td><b class="ui-table-cell-label">Peso (Kgs)</b><div align="center" style="float:right;">70</div></td><td>&nbsp;</td></tr>
+                        <!--                        <tr><td><b class="ui-table-cell-label">Fecha</b><div align="center" style="float:right;">2013-01-14</div></td>
+                                                    <td><b class="ui-table-cell-label">Peso (Kgs)</b><div align="center" style="float:right;">65</div></td><td>&nbsp;</td></tr>-->
+                    </tbody>
+                </table>
+                <a data-role="button" href="#page11" data-transition="none">
+                    Volver
+                </a>
+            </div>
+        </div>
+        <div data-role="page" id="page133">
             <div data-theme="a" data-role="header" data-position="fixed">
                 <a href="#page6" data-transition="none" data-role="button" data-icon="home" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" title="Home" class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-notext ui-btn-up-a"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
                 <h1>TEDI</h1>
