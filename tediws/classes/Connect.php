@@ -19,7 +19,7 @@ class Connect {
     public function openConnect() {
         $this->sqlconnect = null;
         $url = "97.74.31.18";
-        $user = "saludprimero";
+        $user = "salud*primero";
         $passwd = "p4ss4l_R1M3*68";
         $db = "saludprimero";
 
